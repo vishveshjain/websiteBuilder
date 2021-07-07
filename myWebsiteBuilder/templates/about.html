@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %}
+About me page
+{% endblock title %}
+{% block body %}
+<h1>About Me</h1>
+{% for item in aboutMe %}
+<h3>{{item.title}}</h3>
+{{item.body}}
+{% endfor %}
+{% endblock body %}

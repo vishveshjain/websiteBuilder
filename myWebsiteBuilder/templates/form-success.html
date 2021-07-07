@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %}
+This is form success page
+{% endblock title %}
+
+{% block body %}
+<div class="alert alert-secondary" role="alert">
+  We received your email and will get back to you as soon as possible.  <a href="{% url 'index-page' %}" class="alert-link">Go back</a>.
+</div>
+{% endblock body %}
+

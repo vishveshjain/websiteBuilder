@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+Contact page
+{% endblock title %}
+{% block css_link %}
+<script src="https://kit.fontawesome.com/a076d05399.js"></script> 
+<link rel="stylesheet" href="{% static 'style/contact.css' %}">
+{% endblock css_link %}
+
+{% block body %}
+<div class="container">
+   <div class="contact-parent">
+      <div class="contact-child child1">
+         <p>
+            <i class="fas fa-map-marker-alt"></i> Address <br />
+            <span> Ash Lane 110
+            <br />
+            London, UK
+            </span>
+         </p>
+         <p>
+            <i class="fas fa-phone-alt"></i> Let's Talk <br />
+            <span> 0787878787</span>
+         </p>
+         <p>
+            <i class=" far fa-envelope"></i> General Support <br />
+            <span>contact@example.com</span>
+         </p>
+      </div>
+      <div class="contact-child child2">
+         <div class="inside-contact">
+            <h2>Contact Us</h2>
+            <h3>
+               <span id="confirm">
+            </h3>
+            <form action="" method="POST">
+               {% csrf_token %}
+                {{form.as_p}}
+            <input type="submit" id="btn_send" value="SEND">
+            </form>
+         </div>
+      </div>
+   </div>
+</div>
+{% endblock body %}

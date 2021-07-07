@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+Gallery Page
+{% endblock title %}
+{% block css_link %}
+<link rel="stylesheet" href="{% static 'style/gallery.css' %}">
+{% endblock css_link %}
+
+{% block body %}
+{% for i in numbers %}
+<div class="card">
+<img src="{{baseUrl}}36{{i}}x200/?{{lastIndex.category}}" class="card-img-top" alt="{{lastIndex.category}}">
+  <div class="card-body">
+    <p class="card-text">image {{i}}</p>
+  </div>
+</div>
+{% endfor %}
+{% endblock body %}
+
+
