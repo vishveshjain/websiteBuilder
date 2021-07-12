@@ -1,27 +1,55 @@
-from django import forms
 from django.shortcuts import redirect, render
 from rest_framework.views import APIView
 from .models import aboutMe, contactForm, websiteDetail,socialLink
-from .forms import ContactForm
+from .forms import ContactForm, websiteDetailForm
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from .serializers import websiteSerializer
 
 
 # Create your views here.
+def websiteDetails(request):
+    if request.method == 'POST':
+        # create a form instance and populate it with data from the request:
+        form = websiteDetailForm(request.POST)
+        # check whether it's valid:
+        if form.is_valid():
+            category = form.cleaned_data['category']
+            websiteName = form.cleaned_data['websiteName']
+            fbLink = form.cleaned_data['fbLink']
+            twittterLink = form.cleaned_data['twittterLink']
+            googleLink = form.cleaned_data['googleLink']
+            gitLink  = form.cleaned_data['gitLink']
+            linkedinLink = form.cleaned_data['linkedinLink']
+            InstaLink = form.cleaned_data['InstaLink']
+            title = form.cleaned_data['title']
+            body = form.cleaned_data['body']
+            reg1 = websiteDetail(category=category, websiteName=websiteName)
+            reg1.save()
+            reg2 = socialLink(fbLink=fbLink, twittterLink=twittterLink, googleLink=googleLink, gitLink=gitLink, linkedinLink=linkedinLink, InstaLink=InstaLink)
+            reg2.save()
+            reg3 = aboutMe(title=title, body=body)
+            reg3.save()
+            return redirect('index-page')
+    else:
+        form=websiteDetailForm()
+    return render(request,'websiteDetails.html',{
+        'form':form
+    })
 def index(request):
     data = websiteDetail.objects.all()
     socialLinkData = socialLink.objects.all()
     dataCount=data.count()
-    lastIndex = data[dataCount-1]
     baseUrl='https://source.unsplash.com/'
+    lastIndex = data[dataCount-1]
     return render(request,'index.html',{
         'baseUrl':baseUrl,
         'websiteData': data,
         'lastIndex': lastIndex,
         'socialLink':socialLinkData
-
     })
+    
+
 def gallery(request):
     data = websiteDetail.objects.all()
     socialLinkData = socialLink.objects.all()
@@ -48,7 +76,7 @@ def about(request):
         'websiteData': data,
         'lastIndex': lastIndex,
         'socialLink':socialLinkData,
-        'aboutMe': aboutme
+        'aboutMe': aboutme,
     })
 def contact(request):
     data = websiteDetail.objects.all()
@@ -68,7 +96,6 @@ def contact(request):
             subject = form.cleaned_data['subject']
             message = form.cleaned_data['message']
             sender = form.cleaned_data['sender']
-            recipients = ['info@example.com']
             reg = contactForm(name=name, phone=phone, subject=subject,message=message,sender=sender)
             reg.save()
             # send_mail(subject, message, sender, recipients)
@@ -116,4 +143,4 @@ class UserViewSet(APIView):
         serializer_class = websiteSerializer(queryset, many=True)
         return Response(serializer_class.data)
     def post(self):
-        pass
+        pass    
