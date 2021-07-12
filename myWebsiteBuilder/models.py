@@ -5,7 +5,7 @@ from django.urls import reverse
 # Create your models here.
 class websiteDetail(models.Model):
     category = models.CharField(max_length=50)
-    websiteName = models.CharField(max_length=50)
+    websiteName = models.CharField(max_length=100)
 
     def __str__(self) -> str:
         return self.category +' | '+ self.websiteName
