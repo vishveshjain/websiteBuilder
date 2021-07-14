@@ -1,9 +1,12 @@
 # WebsiteBuilder
 Build your own website in few minutes through this website builder
 
-#screenshot
+# screenshot
 input details
-websiteBuilder\screenshot\website_details.jpeg
+![](screenshot/website_details.jpeg)
 
 Website
-websiteBuilder\screenshot\output.jpeg
+![](screenshot/output.jpeg)
+
+
+<b>Web Link:</b> https://vishveshjain.pythonanywhere.com/
