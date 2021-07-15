@@ -38,7 +38,7 @@ def websiteDetails(request):
     })
 def index(request):
     data = websiteDetail.objects.all()
-    socialLinkData = socialLink.objects.all()
+    socialLinkData = socialLink.objects.all().last()
     dataCount=data.count()
     baseUrl='https://source.unsplash.com/'
     lastIndex = data[dataCount-1]
@@ -52,7 +52,7 @@ def index(request):
 
 def gallery(request):
     data = websiteDetail.objects.all()
-    socialLinkData = socialLink.objects.all()
+    socialLinkData = socialLink.objects.all().last()
     dataCount=data.count()
     lastIndex = data[dataCount-1]
     baseUrl='https://source.unsplash.com/'
@@ -67,8 +67,8 @@ def gallery(request):
 
 def about(request):
     data = websiteDetail.objects.all()
-    socialLinkData = socialLink.objects.all()
-    aboutme = aboutMe.objects.all()
+    socialLinkData = socialLink.objects.all().last()
+    aboutme = aboutMe.objects.all().last()
     dataCount=data.count()
     lastIndex = data[dataCount-1]
     return render(request,'about.html',
@@ -80,7 +80,7 @@ def about(request):
     })
 def contact(request):
     data = websiteDetail.objects.all()
-    socialLinkData = socialLink.objects.all()
+    socialLinkData = socialLink.objects.all().last()
     dataCount=data.count()
     lastIndex = data[dataCount-1]
     if request.method == 'POST':
@@ -112,7 +112,7 @@ def contact(request):
     })
 def blog(request):
     data = websiteDetail.objects.all()
-    socialLinkData = socialLink.objects.all()
+    socialLinkData = socialLink.objects.all().last()
     dataCount=data.count()
     lastIndex = data[dataCount-1]
     return render(request,'blog.html',
@@ -124,7 +124,7 @@ def blog(request):
 
 def submit_success(request):
     data = websiteDetail.objects.all()
-    socialLinkData = socialLink.objects.all()
+    socialLinkData = socialLink.objects.all().last()
     dataCount=data.count()
     lastIndex = data[dataCount-1]
     return render(request,'form-success.html',
