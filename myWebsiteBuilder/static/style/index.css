@@ -1,5 +1,5 @@
 .carousel-item{
-    height: 15rem;
+    height: 20rem;
     background: #777;
     color: white;
     position: relative;
@@ -12,3 +12,8 @@
     right: 0;
     padding-bottom: 50px;
 }
+
+img {
+    width: 100%;
+    height: 100%;
+  }

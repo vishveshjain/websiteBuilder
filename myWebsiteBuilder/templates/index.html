@@ -5,6 +5,14 @@ My first website builder
 {% endblock title %}
 {% block css_link %}
 <link rel="stylesheet" href="{% static 'style/index.css' %}">
+<style>
+  .container-md{
+    color: rgb(121, 66, 93);
+    text-shadow: rgb(24, 109, 109);
+    text-indent: 2%;
+    font-style: oblique;
+  }
+</style>
 {% endblock css_link %}
 
 {% block body %}
@@ -34,8 +42,9 @@ My first website builder
     <span class="visually-hidden">Next</span>
   </button>
 </div>
-<div class="container-fluid">
-{% lorem 10 p %} 
+<br><br>
+<div class="container-md">
+{% lorem 5 p%} 
 </div>
 {% endblock body %}
 
