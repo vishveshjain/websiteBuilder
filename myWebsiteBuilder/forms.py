@@ -22,7 +22,8 @@ category_choice=[
     ('legal','Legal'),
     ('finance', 'Finance'),
     ('animal','Animal'),
-    ('news','News')
+    ('news','News'),
+    ('healthcare','Healthcare')
 ]
 class websiteDetailForm(forms.Form):
     category = forms.CharField(label='Select website catogory',widget=forms.Select(choices=category_choice))
