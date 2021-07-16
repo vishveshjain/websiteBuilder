@@ -1,4 +1,5 @@
 from django.shortcuts import redirect, render
+from rest_framework.fields import NullBooleanField, empty
 from rest_framework.views import APIView
 from .models import aboutMe, contactForm, websiteDetail,socialLink
 from .forms import ContactForm, websiteDetailForm
@@ -22,9 +23,10 @@ def websiteDetails(request):
             gitLink  = form.cleaned_data['gitLink']
             linkedinLink = form.cleaned_data['linkedinLink']
             InstaLink = form.cleaned_data['InstaLink']
+            homepageContent = form.cleaned_data['homepageContent']
             title = form.cleaned_data['title']
             body = form.cleaned_data['body']
-            reg1 = websiteDetail(category=category, websiteName=websiteName)
+            reg1 = websiteDetail(category=category, websiteName=websiteName, homepageContent=homepageContent)
             reg1.save()
             reg2 = socialLink(fbLink=fbLink, twittterLink=twittterLink, googleLink=googleLink, gitLink=gitLink, linkedinLink=linkedinLink, InstaLink=InstaLink)
             reg2.save()
@@ -46,7 +48,8 @@ def index(request):
         'baseUrl':baseUrl,
         'websiteData': data,
         'lastIndex': lastIndex,
-        'socialLink':socialLinkData
+        'socialLink':socialLinkData,
+        'checkBlink':data.last().homepageContent
     })
     
 

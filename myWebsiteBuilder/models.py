@@ -6,6 +6,7 @@ from django.urls import reverse
 class websiteDetail(models.Model):
     category = models.CharField(max_length=50)
     websiteName = models.CharField(max_length=100)
+    homepageContent = models.TextField(blank=True, null=True)
 
     def __str__(self) -> str:
         return self.category +' | '+ self.websiteName

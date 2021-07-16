@@ -34,5 +34,6 @@ class websiteDetailForm(forms.Form):
     gitLink  = forms.CharField(label='Enter github link', max_length=250, required=False)
     linkedinLink = forms.CharField(label='Enter linkedIn link', max_length=250, required=False)
     InstaLink = forms.CharField(label='Enter Instagram link', max_length=250, required=False)
+    homepageContent = forms.CharField(label='Enter homepage content', widget=forms.Textarea, required=False)
     title = forms.CharField(label='Enter about us heading', max_length=100, required=False)
     body = forms.CharField(label='Enter about us content', widget=forms.Textarea, required=False)
