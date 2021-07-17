@@ -49,7 +49,6 @@ def index(request):
         'websiteData': data,
         'lastIndex': lastIndex,
         'socialLink':socialLinkData,
-        'checkBlink':data.last().homepageContent
     })
     
 
