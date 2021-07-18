@@ -5,5 +5,5 @@ from rest_framework import serializers
 class websiteSerializer(serializers.ModelSerializer):
     class Meta:
         model = websiteDetail
-        fields = '__all__'
+        fields = ('category','websiteName','homepageContent')
 

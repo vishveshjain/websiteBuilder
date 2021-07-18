@@ -9,4 +9,6 @@ urlpatterns = [
     path('contact/',views.contact,name='contact'),
     path('blog/',views.blog,name='blog'),
     path('success',views.submit_success,name='submit-success'),
+    path('api/',views.UserViewSet),
+    path('api/<int:id>',views.UserViewSet),
 ]

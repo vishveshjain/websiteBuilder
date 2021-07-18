@@ -20,5 +20,4 @@ from myWebsiteBuilder import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('myWebsiteBuilder.urls')),
-    path('api/', views.UserViewSet.as_view())
 ]

@@ -1,11 +1,10 @@
+from django.http.response import JsonResponse
 from django.shortcuts import redirect, render
-from rest_framework.fields import NullBooleanField, empty
-from rest_framework.views import APIView
+from rest_framework.parsers import JSONParser
 from .models import aboutMe, contactForm, websiteDetail,socialLink
 from .forms import ContactForm, websiteDetailForm
-from rest_framework.response import Response
-from rest_framework.views import APIView
 from .serializers import websiteSerializer
+from django.views.decorators.csrf import csrf_exempt
 
 
 # Create your views here.
@@ -136,13 +135,31 @@ def submit_success(request):
         'socialLink':socialLinkData
     })
 
-class UserViewSet(APIView):
-    """
-    API endpoint that allows users to be viewed or edited.
-    """
-    def get(self, request):
+@csrf_exempt
+def UserViewSet(request, id=0):
+    if request.method == 'GET':
         queryset = websiteDetail.objects.all()
         serializer_class = websiteSerializer(queryset, many=True)
-        return Response(serializer_class.data)
-    def post(self):
-        pass    
+        return JsonResponse(serializer_class.data, safe=False)
+
+    elif request.method == 'POST':
+        websiteData = JSONParser.parse(request)
+        serializer_class = websiteSerializer(data = websiteData)
+        if serializer_class.is_valid():
+            serializer_class.save()
+            return JsonResponse('Added Successfully!', safe=False) 
+        return JsonResponse('Failed to Add', safe=False)
+
+    elif request.method == 'PUT':
+        websiteData = JSONParser.parse(request)
+        website = websiteDetail.objects.get(id = websiteData['id'])
+        serializer_class = websiteSerializer(website, data = websiteData)
+        if serializer_class.is_valid():
+            serializer_class.save()
+            return JsonResponse('Updated Successfully!', safe=False) 
+        return JsonResponse('Failed to Update', safe=False)
+        
+    elif request.method == 'DELETE':
+        website = websiteDetail.objects.get(id = id)
+        website.delete()
+        return JsonResponse('Deleted Successfully!', safe=False) 
